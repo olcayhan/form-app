@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-const ShortText = () => {
+const LongText = () => {
   const [data, setData] = useState<any>({
     header: "",
     subheader: "",
@@ -16,7 +16,7 @@ const ShortText = () => {
         onChange={(e) => setData({ ...data, header: e.target.value })}
         value={data.header}
       />
-      <input type="text" disabled className="border p-2 rounded-md w-64" />
+      <input type="text" disabled className="border p-2 rounded-md w-64 h-52" />
       <input
         type="text"
         placeholder="enter a subheader"
@@ -28,4 +28,4 @@ const ShortText = () => {
   );
 };
 
-export default ShortText;
+export default LongText;
