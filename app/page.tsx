@@ -5,7 +5,7 @@ import ShortText from "@/components/shortText";
 import LongText from "@/components/longText";
 import SingleChoice from "@/components/singleChoice";
 export default function Home() {
-  const [elements, setElements] = useState<any>([]);
+  const [elements, setElements] = useState<any[]>([]);
 
   const leftSide = [
     {
@@ -74,17 +74,51 @@ export default function Home() {
               className="relative w-full focus:border-blue-500 border-[1px] rounded-md"
               key={element.id}
             >
-              <button
-                onClick={() => {
-                  let newElements = elements.filter(
-                    (el: any) => el.id !== element.id
-                  );
-                  setElements(newElements);
-                }}
-                className="absolute top-0 right-0 bg-red-500"
-              >
-                Delete
-              </button>
+              <div className="absolute top-2 right-2 flex flex-row justify-center items-center gap-8">
+                <button
+                  className="text-[32px]"
+                  onClick={() => {
+                    let index = elements.indexOf(element);
+                    index > 0
+                      ? ([elements[index], elements[index - 1]] = [
+                          elements[index - 1],
+                          elements[index],
+                        ])
+                      : null;
+                    let newElements = [...elements];
+                    setElements(newElements);
+                  }}
+                >
+                  ^
+                </button>
+                <button
+                  className="text-[32px] rotate-180"
+                  onClick={() => {
+                    let index = elements.indexOf(element);
+                    index < elements.length - 1
+                      ? ([elements[index], elements[index + 1]] = [
+                          elements[index + 1],
+                          elements[index],
+                        ])
+                      : null;
+                    let newElements = [...elements];
+                    setElements(newElements);
+                  }}
+                >
+                  ^
+                </button>
+                <button
+                  onClick={() => {
+                    let newElements = elements.filter(
+                      (el: any) => el.id !== element.id
+                    );
+                    setElements(newElements);
+                  }}
+                  className=" bg-red-500 w-8 h-8 rounded-full text-neutral-50"
+                >
+                  x
+                </button>
+              </div>
               <Element />
             </button>
           );
