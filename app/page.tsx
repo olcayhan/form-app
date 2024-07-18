@@ -5,6 +5,9 @@ import ShortText from "@/components/shortText";
 import LongText from "@/components/longText";
 import SingleChoice from "@/components/singleChoice";
 import MultipleChoice from "@/components/multipleChoice";
+import ImageBox from "@/components/imageBox";
+import headerText from "@/components/headerText";
+import fullnameText from "@/components/fullnameText";
 export default function Home() {
   const [elements, setElements] = useState<any[]>([]);
 
@@ -65,10 +68,52 @@ export default function Home() {
         ]);
       },
     },
+    {
+      id: 5,
+      name: "Image",
+      event: () => {
+        setElements((prevElements: any) => [
+          ...prevElements,
+          {
+            id: Math.floor(Math.random() * 10000000),
+            name: "Image",
+            type: ImageBox,
+          },
+        ]);
+      },
+    },
+    {
+      id: 6,
+      name: "Header",
+      event: () => {
+        setElements((prevElements: any) => [
+          ...prevElements,
+          {
+            id: Math.floor(Math.random() * 10000000),
+            name: "Header",
+            type: headerText,
+          },
+        ]);
+      },
+    },
+    {
+      id: 7,
+      name: "Full Name",
+      event: () => {
+        setElements((prevElements: any) => [
+          ...prevElements,
+          {
+            id: Math.floor(Math.random() * 10000000),
+            name: "Full Name",
+            type: fullnameText,
+          },
+        ]);
+      },
+    },
   ];
 
   return (
-    <main className="flex min-h-screen flex-row items-start justify-center p-24 gap-3">
+    <main className="flex min-h-screen flex-row items-start justify-center p-24 gap-3 bg-neutral-100">
       <div className="w-1/4 h-full flex flex-col items-start justify-start gap-1 p-6">
         {leftSide.map((element: any) => {
           return (
