@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-const SingleChoice = () => {
+const MultipleChoice = () => {
   const [data, setData] = useState<any>({
     header: "",
     choices: ["", "", ""],
@@ -19,7 +19,7 @@ const SingleChoice = () => {
       {data.choices.map((choice: any) => {
         return (
           <div key={choice.id} className="flex items-center gap-2">
-            <input type="radio" disabled />
+            <input type="checkbox" disabled />
             <input
               type="text"
               placeholder="Option"
@@ -65,4 +65,4 @@ const SingleChoice = () => {
   );
 };
 
-export default SingleChoice;
+export default MultipleChoice;

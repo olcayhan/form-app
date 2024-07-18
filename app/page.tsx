@@ -4,6 +4,7 @@ import { useState } from "react";
 import ShortText from "@/components/shortText";
 import LongText from "@/components/longText";
 import SingleChoice from "@/components/singleChoice";
+import MultipleChoice from "@/components/multipleChoice";
 export default function Home() {
   const [elements, setElements] = useState<any[]>([]);
 
@@ -46,6 +47,20 @@ export default function Home() {
             id: Math.floor(Math.random() * 10000000),
             name: "Single choice",
             type: SingleChoice,
+          },
+        ]);
+      },
+    },
+    {
+      id: 4,
+      name: "Multiple choice",
+      event: () => {
+        setElements((prevElements: any) => [
+          ...prevElements,
+          {
+            id: Math.floor(Math.random() * 10000000),
+            name: "Multiple choice",
+            type: MultipleChoice,
           },
         ]);
       },
