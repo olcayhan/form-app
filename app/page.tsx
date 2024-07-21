@@ -1,122 +1,111 @@
 "use client";
 
 import { useState } from "react";
-import ShortText from "@/components/shortText";
-import LongText from "@/components/longText";
-import SingleChoice from "@/components/singleChoice";
-import MultipleChoice from "@/components/multipleChoice";
-import ImageBox from "@/components/imageBox";
-import headerText from "@/components/headerText";
-import fullnameText from "@/components/fullnameText";
-import { MdDelete } from "react-icons/md";
-import { BiChevronDown, BiChevronUp } from "react-icons/bi";
-
-type Element = {
-  id: number;
-  name: string;
-  type: any;
-};
+import ShortText from "@/components/widgets/shortText";
+import LongText from "@/components/widgets/longText";
+import SingleChoice from "@/components/widgets/singleChoice";
+import MultipleChoice from "@/components/widgets/multipleChoice";
+import ImageBox from "@/components/widgets/imageBox";
+import Widget from "@/components/widget";
+import HeaderText from "@/components/widgets/headerText";
+import FullNameText from "@/components/widgets/fullnameText";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { addWidget } from "@/lib/features/widgetSlice";
 
 export default function Home() {
-  const [elements, setElements] = useState<Element[]>([]);
+  const elements = useAppSelector((state) => state.widgetReducer.value);
+  const dispatch = useAppDispatch();
 
   const leftSide = [
     {
       id: 1,
       name: "Short text",
       event: () => {
-        setElements((prevElements: Element[]) => [
-          ...prevElements,
-          {
+        dispatch(
+          addWidget({
             id: Math.floor(Math.random() * 10000000),
             name: "Short text",
             type: ShortText,
-          },
-        ]);
+          })
+        );
       },
     },
     {
       id: 2,
       name: "Long text",
       event: () => {
-        setElements((prevElements: Element[]) => [
-          ...prevElements,
-          {
+        dispatch(
+          addWidget({
             id: Math.floor(Math.random() * 10000000),
             name: "Long text",
             type: LongText,
-          },
-        ]);
+          })
+        );
       },
     },
     {
       id: 3,
       name: "Single choice",
       event: () => {
-        setElements((prevElements: Element[]) => [
-          ...prevElements,
-          {
+        dispatch(
+          addWidget({
             id: Math.floor(Math.random() * 10000000),
             name: "Single choice",
             type: SingleChoice,
-          },
-        ]);
+          })
+        );
       },
     },
     {
       id: 4,
       name: "Multiple choice",
       event: () => {
-        setElements((prevElements: Element[]) => [
-          ...prevElements,
-          {
+        dispatch(
+          addWidget({
             id: Math.floor(Math.random() * 10000000),
             name: "Multiple choice",
             type: MultipleChoice,
-          },
-        ]);
+          })
+        );
       },
     },
     {
       id: 5,
       name: "Image",
       event: () => {
-        setElements((prevElements: Element[]) => [
-          ...prevElements,
-          {
+        dispatch(
+          addWidget({
             id: Math.floor(Math.random() * 10000000),
             name: "Image",
             type: ImageBox,
-          },
-        ]);
+          })
+        );
       },
     },
     {
       id: 6,
       name: "Header",
       event: () => {
-        setElements((prevElements: Element[]) => [
-          ...prevElements,
-          {
+        dispatch(
+          addWidget({
             id: Math.floor(Math.random() * 10000000),
             name: "Header",
-            type: headerText,
-          },
-        ]);
+            type: HeaderText,
+          })
+        );
       },
     },
     {
       id: 7,
       name: "Full Name",
       event: () => {
-        setElements((prevElements: Element[]) => [
-          ...prevElements,
-          {
+        dispatch(
+          addWidget({
             id: Math.floor(Math.random() * 10000000),
             name: "Full Name",
-            type: fullnameText,
-          },
-        ]);
+            type: FullNameText,
+          })
+        );
       },
     },
   ];
@@ -141,61 +130,8 @@ export default function Home() {
             Add elements from the left side
           </div>
         )}
-        {elements.map((element: any) => {
-          const Element = element.type;
-          return (
-            <button
-              className="relative w-full focus:border-blue-500 group border-[1px] rounded-md"
-              key={element.id}
-            >
-              <div className="absolute h-full my-auto -right-12 hidden flex-col justify-center items-center gap-1 group-focus-within:flex ">
-                <button
-                  className="text-[32px]"
-                  onClick={() => {
-                    let index = elements.indexOf(element);
-                    index > 0
-                      ? ([elements[index], elements[index - 1]] = [
-                          elements[index - 1],
-                          elements[index],
-                        ])
-                      : null;
-                    let newElements = [...elements];
-                    setElements(newElements);
-                  }}
-                >
-                  <BiChevronUp />
-                </button>
-                <button
-                  className="text-[32px]"
-                  onClick={() => {
-                    let index = elements.indexOf(element);
-                    index < elements.length - 1
-                      ? ([elements[index], elements[index + 1]] = [
-                          elements[index + 1],
-                          elements[index],
-                        ])
-                      : null;
-                    let newElements = [...elements];
-                    setElements(newElements);
-                  }}
-                >
-                  <BiChevronDown />
-                </button>
-                <button
-                  onClick={() => {
-                    let newElements = elements.filter(
-                      (el: any) => el.id !== element.id
-                    );
-                    setElements(newElements);
-                  }}
-                  className=" bg-red-500 w-10 h-10 rounded-full text-neutral-50 hover:bg-red-400 active:bg-red-600 flex justify-center items-center"
-                >
-                  <MdDelete fontSize={20} />
-                </button>
-              </div>
-              <Element />
-            </button>
-          );
+        {elements.map((element) => {
+          return <Widget element={element} key={element.id} />;
         })}
       </div>
     </main>

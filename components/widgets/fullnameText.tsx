@@ -1,6 +1,6 @@
 import React from "react";
 
-const fullnameText = () => {
+const FullNameText = () => {
   return (
     <div className="flex flex-col justify-start items-start p-4 gap-3">
       <input
@@ -37,4 +37,4 @@ const fullnameText = () => {
   );
 };
 
-export default fullnameText;
+export default FullNameText;

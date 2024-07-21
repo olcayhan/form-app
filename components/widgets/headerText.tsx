@@ -1,6 +1,6 @@
 import React from "react";
 
-const headerText = () => {
+const HeaderText = () => {
   return (
     <div className="flex flex-col justify-start items-start p-4 gap-3">
       <input
@@ -17,4 +17,4 @@ const headerText = () => {
   );
 };
 
-export default headerText;
+export default HeaderText;
