@@ -61,8 +61,8 @@ export default function Home() {
       name: "Header",
       type: HeaderText,
       data: {
-        header: "Header",
-        subheader: "Subheader",
+        header: "",
+        subheader: "",
       },
     },
     {

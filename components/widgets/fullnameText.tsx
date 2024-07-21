@@ -1,8 +1,7 @@
-"use client";
+import React from "react";
 import { WidgetType } from "@/data/types/widgetType";
 import { updateData } from "@/lib/features/widgetSlice";
 import { useAppDispatch } from "@/lib/hooks";
-import React, { useState } from "react";
 
 const FullNameText = ({ element }: { element: WidgetType }) => {
   const dispatcher = useAppDispatch();
