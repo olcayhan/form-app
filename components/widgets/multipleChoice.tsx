@@ -1,24 +1,21 @@
 import React from "react";
 import { WidgetType } from "@/data/types/widgetType";
 import { useAppDispatch } from "@/lib/hooks";
-import { updateData } from "@/lib/features/widgetSlice";
+import { MdClose } from "react-icons/md";
+import handleUpdate from "@/utils/updateHandler";
 
 const MultipleChoice = ({ element }: { element: WidgetType }) => {
   const dispatch = useAppDispatch();
+
   return (
     <div className="flex flex-col justify-start items-start gap-3 w-full p-4 min-h-14">
       <input
         type="text"
         placeholder="enter a header"
-        className="bg-transparent  outline-none border-neutral-500"
+        className="bg-transparent  outline-none border-neutral-500 font-semibold"
         value={element.data.header}
         onChange={(e) => {
-          dispatch(
-            updateData({
-              id: element.id,
-              data: { ...element.data, header: e.target.value },
-            })
-          );
+          handleUpdate(dispatch, element, "header", e.target.value);
         }}
       />
 
@@ -30,6 +27,7 @@ const MultipleChoice = ({ element }: { element: WidgetType }) => {
               type="text"
               placeholder="Option"
               value={choice}
+              className="border p-1 rounded-md"
               onChange={(e) => {
                 const newChoices = element.data.choices.map(
                   (choice: string, index: number) => {
@@ -39,12 +37,7 @@ const MultipleChoice = ({ element }: { element: WidgetType }) => {
                     return choice;
                   }
                 );
-                dispatch(
-                  updateData({
-                    id: element.id,
-                    data: { ...element.data, choices: newChoices },
-                  })
-                );
+                handleUpdate(dispatch, element, "choices", newChoices);
               }}
             />
             <button
@@ -52,15 +45,10 @@ const MultipleChoice = ({ element }: { element: WidgetType }) => {
                 const newChoices = element.data.choices.filter(
                   (choice: string, index: number) => index !== key
                 );
-                dispatch(
-                  updateData({
-                    id: element.id,
-                    data: { ...element.data, choices: newChoices },
-                  })
-                );
+                handleUpdate(dispatch, element, "choices", newChoices);
               }}
             >
-              x
+              <MdClose />
             </button>
           </div>
         );
@@ -68,12 +56,10 @@ const MultipleChoice = ({ element }: { element: WidgetType }) => {
       <button
         className="underline text-[12px]"
         onClick={() => {
-          dispatch(
-            updateData({
-              id: element.id,
-              data: { ...element.data, choices: [...element.data.choices, ""] },
-            })
-          );
+          handleUpdate(dispatch, element, "choices", [
+            ...element.data.choices,
+            "",
+          ]);
         }}
       >
         add option

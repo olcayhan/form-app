@@ -1,11 +1,10 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
+import { WidgetType } from "@/data/types/widgetType";
+import { useAppDispatch } from "@/lib/hooks";
+import handleUpdate from "@/utils/updateHandler";
 
-const ShortText = () => {
-  const [data, setData] = useState<any>({
-    header: "",
-    subheader: "",
-  });
+const ShortText = ({ element }: { element: WidgetType }) => {
+  const dispatch = useAppDispatch();
 
   return (
     <div className="flex flex-col justify-start items-start gap-3 w-full p-4 min-h-14">
@@ -13,16 +12,20 @@ const ShortText = () => {
         type="text"
         placeholder="enter a header"
         className="bg-transparent  outline-none border-neutral-500"
-        onChange={(e) => setData({ ...data, header: e.target.value })}
-        value={data.header}
+        value={element.data.header}
+        onChange={(e) => {
+          handleUpdate(dispatch, element, "header", e.target.value);
+        }}
       />
       <input type="text" disabled className="border p-2 rounded-md w-64" />
       <input
         type="text"
         placeholder="enter a subheader"
         className="bg-transparent outline-none border-neutral-500 text-[14px]"
-        onChange={(e) => setData({ ...data, subheader: e.target.value })}
-        value={data.subheader}
+        value={element.data.subheader}
+        onChange={(e) => {
+          handleUpdate(dispatch, element, "subheader", e.target.value);
+        }}
       />
     </div>
   );

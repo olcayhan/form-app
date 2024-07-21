@@ -1,10 +1,10 @@
 import React from "react";
 import { WidgetType } from "@/data/types/widgetType";
-import { updateData } from "@/lib/features/widgetSlice";
 import { useAppDispatch } from "@/lib/hooks";
+import handleUpdate from "@/utils/updateHandler";
 
 const FullNameText = ({ element }: { element: WidgetType }) => {
-  const dispatcher = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <div className="flex flex-col justify-start items-start p-4 gap-3">
@@ -14,12 +14,7 @@ const FullNameText = ({ element }: { element: WidgetType }) => {
         placeholder="Type a Question"
         value={element.data.header}
         onChange={(e) => {
-          dispatcher(
-            updateData({
-              id: element.id,
-              data: { ...element.data, header: e.target.value },
-            })
-          );
+          handleUpdate(dispatch, element, "header", e.target.value);
         }}
       />
       <div className="flex flex-row justify-between items-center w-full">
@@ -34,12 +29,7 @@ const FullNameText = ({ element }: { element: WidgetType }) => {
             className="bg-transparent outline-none text-sm"
             value={element.data.subheader1}
             onChange={(e) => {
-              dispatcher(
-                updateData({
-                  id: element.id,
-                  data: { ...element.data, subheader1: e.target.value },
-                })
-              );
+              handleUpdate(dispatch, element, "subheader1", e.target.value);
             }}
           />
         </div>
@@ -54,12 +44,7 @@ const FullNameText = ({ element }: { element: WidgetType }) => {
             className="bg-transparent outline-none text-sm"
             value={element.data.subheader2}
             onChange={(e) => {
-              dispatcher(
-                updateData({
-                  id: element.id,
-                  data: { ...element.data, subheader2: e.target.value },
-                })
-              );
+              handleUpdate(dispatch, element, "subheader2", e.target.value);
             }}
           />
         </div>
