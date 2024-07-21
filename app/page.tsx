@@ -95,6 +95,11 @@ export default function Home() {
           })
         )}
       </div>
+      <div className="w-1/4 flex flex-col justify-start items-start gap-2 p-6 border-[1px]">
+        <div className="w-full flex flex-row justify-center items-center border-neutral-300 border-[1px] min-h-36 rounded-md font-semibold text-lg text-neutral-700">
+          <pre>{JSON.stringify(widgets, null, 2)}</pre>
+        </div>
+      </div>
     </main>
   );
 }
