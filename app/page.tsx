@@ -18,36 +18,62 @@ export default function Home() {
       id: 1,
       name: "Short Text",
       type: ShortText,
+      data: {
+        header: "",
+        subheader: "",
+      },
     },
     {
       id: 2,
       name: "Long Text",
       type: LongText,
+      data: {
+        header: "",
+        subheader: "",
+      },
     },
     {
       id: 3,
       name: "Single Choice",
       type: SingleChoice,
+      data: {
+        header: "",
+        choices: ["Choice 1", "Choice 2", "Choice 3"],
+      },
     },
     {
       id: 4,
       name: "Multiple Choice",
       type: MultipleChoice,
+      data: {
+        header: "",
+        choices: ["Choice 1", "Choice 2", "Choice 3"],
+      },
     },
     {
       id: 5,
       name: "Image",
       type: ImageBox,
+      data: null,
     },
     {
       id: 6,
       name: "Header",
       type: HeaderText,
+      data: {
+        header: "Header",
+        subheader: "Subheader",
+      },
     },
     {
       id: 7,
       name: "Full Name",
       type: FullNameText,
+      data: {
+        header: "Full Name",
+        subheader1: "First Name",
+        subheader2: "Last Name",
+      },
     },
   ];
 

@@ -11,6 +11,7 @@ const WidgetButton = ({ element }: { element: WidgetType }) => {
       id: Math.floor(Math.random() * 10000000),
       name: element.name,
       type: element.type,
+      data: element.data,
     };
     dispatch(addWidget(newElement));
   };

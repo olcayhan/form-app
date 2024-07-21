@@ -32,9 +32,13 @@ export const widgetReducer = createSlice({
       state.value[index] = state.value[index + 1];
       state.value[index + 1] = temp;
     },
+    updateData: (state, action: PayloadAction<any>) => {
+      const index = state.value.findIndex((el) => el.id === action.payload.id);
+      state.value[index].data = action.payload.data;
+    },
   },
 });
 
-export const { addWidget, deleteWidget, upWidget, downWidget } =
+export const { addWidget, deleteWidget, upWidget, downWidget, updateData } =
   widgetReducer.actions;
 export default widgetReducer.reducer;
