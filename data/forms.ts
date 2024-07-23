@@ -7,15 +7,15 @@ import FullNameText from "@/components/widgets/fullnameText";
 import SingleChoice from "@/components/widgets/singleChoice";
 
 export type formType = {
-  id: string;
+  id: number;
   title: string;
-  description: string;
+  description?: string;
   widgets: WidgetType[];
 };
 
 export const forms: formType[] = [
   {
-    id: "1",
+    id: 1,
     title: "Form 1",
     description: "This is the first form",
     widgets: [
@@ -50,7 +50,7 @@ export const forms: formType[] = [
     ],
   },
   {
-    id: "2",
+    id: 2,
     title: "Form 2",
     description: "This is the second form",
     widgets: [],

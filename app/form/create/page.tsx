@@ -1,15 +1,17 @@
 "use client";
 
-import { useAppSelector } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { WidgetType } from "@/data/types/widgetType";
 import WidgetButton from "@/components/custom/WidgetButton";
 import Widget from "@/components/Widget";
 import { widgetButtons } from "@/data/widgets";
 import Link from "next/link";
 import { BsArrowLeft } from "react-icons/bs";
+import { updateTitle } from "@/lib/features/widgetSlice";
 
 export default function page() {
-  const widgets = useAppSelector((state) => state.widgetReducer.value);
+  const form = useAppSelector((state) => state.widgetReducer.value);
+  const dispatch = useAppDispatch();
 
   return (
     <main className="flex min-h-screen flex-col items-start px-24 justify-start bg-neutral-100">
@@ -20,6 +22,13 @@ export default function page() {
         >
           <BsArrowLeft />
         </Link>
+        <input
+          type="text"
+          placeholder="Name"
+          value={form.title}
+          className="text-3xl bg-transparent border border-neutral-500 p-1 rounded-md font-semibold text-center"
+          onChange={(e) => dispatch(updateTitle(e.target.value))}
+        />
         <button className="outline-1 hover:bg-neutral-200 active:bg-neutral-300 outline border p-2 rounded-md font-semibold transition-all duration-100">
           Generate Form
         </button>
@@ -31,19 +40,19 @@ export default function page() {
           })}
         </div>
         <div className="w-2/4 flex flex-col justify-start items-start gap-2 p-6 border-[1px]">
-          {widgets.length === 0 ? (
+          {form.widgets.length === 0 ? (
             <div className="w-full flex flex-row justify-center items-center border-neutral-300 border-[1px] min-h-36 rounded-md font-semibold text-lg text-neutral-700">
               Add elements from the left side
             </div>
           ) : (
-            widgets.map((element) => {
+            form.widgets.map((element) => {
               return <Widget element={element} key={element.id} editable />;
             })
           )}
         </div>
         <div className="w-1/4 flex flex-col justify-start items-start gap-2 p-6 border-[1px]">
           <div className="w-full flex flex-row justify-center items-center border-neutral-300 border-[1px] min-h-36 rounded-md font-semibold text-lg text-neutral-700">
-            <pre>{JSON.stringify(widgets, null, 2)}</pre>
+            <pre>{JSON.stringify(form, null, 2)}</pre>
           </div>
         </div>
       </div>

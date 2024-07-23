@@ -7,7 +7,7 @@ import { forms } from "@/data/forms";
 
 export default function page() {
   const { id } = useParams();
-  const form = forms.find((form) => form.id === id);
+  const form = forms.find((form) => form.id.toString() === id);
   if (!form) {
     return <div>Form not found</div>;
   }
@@ -21,6 +21,10 @@ export default function page() {
         >
           <BsArrowLeft />
         </Link>
+        <h1 className="text-3xl bg-transparent  rounded-md font-semibold text-center">
+          {form.title}
+        </h1>
+        <div></div>
       </div>
       <div className="flex flex-row items-start justify-center py-5 gap-3 bg-neutral-100 w-full">
         <div className="w-2/4 flex flex-col justify-start items-start gap-2 p-6 border-[1px]">
