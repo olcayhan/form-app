@@ -24,8 +24,7 @@ const LongText = ({
         }}
         disabled={!editable}
       />
-      <input
-        type="text"
+      <textarea
         disabled={editable}
         className="border p-2 rounded-md w-64 h-52"
       />

@@ -2,6 +2,9 @@ import ShortText from "@/components/widgets/shortText";
 import { WidgetType } from "./types/widgetType";
 import LongText from "@/components/widgets/longText";
 import MultipleChoice from "@/components/widgets/multipleChoice";
+import HeaderText from "@/components/widgets/headerText";
+import FullNameText from "@/components/widgets/fullnameText";
+import SingleChoice from "@/components/widgets/singleChoice";
 
 export type formType = {
   id: string;
@@ -17,21 +20,22 @@ export const forms: formType[] = [
     description: "This is the first form",
     widgets: [
       {
-        id: 7899663,
-        name: "Short Text",
-        type: ShortText,
+        id: 8287338,
+        name: "Full Name",
+        type: FullNameText,
         data: {
-          header: "Kısa Yazı",
-          subheader: "bu bir kısa yazı",
+          header: "Full Name",
+          subheader1: "First Name",
+          subheader2: "Last Name",
         },
       },
       {
-        id: 2374541,
-        name: "Long Text",
+        id: 7899543,
+        name: "LongText",
         type: LongText,
         data: {
-          header: "",
-          subheader: "",
+          header: "Kısa Yazı",
+          subheader: "bu bir kısa yazı",
         },
       },
       {
@@ -39,7 +43,7 @@ export const forms: formType[] = [
         name: "Multiple Choice",
         type: MultipleChoice,
         data: {
-          header: "",
+          header: "This For Test",
           choices: ["Choice 1", "Choice 2", "Choice 3"],
         },
       },

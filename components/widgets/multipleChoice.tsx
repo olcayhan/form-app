@@ -29,36 +29,45 @@ const MultipleChoice = ({
       {element.data.choices.map((choice: string, key: number) => {
         return (
           <div key={key} className="flex items-center gap-2">
-            <input type="checkbox" disabled={editable} />
             <input
-              type="text"
-              disabled={!editable}
-              placeholder="Option"
-              value={choice}
-              className="border p-1 rounded-md"
-              onChange={(e) => {
-                const newChoices = element.data.choices.map(
-                  (choice: string, index: number) => {
-                    if (index === key) {
-                      return e.target.value;
-                    }
-                    return choice;
-                  }
-                );
-                handleUpdate(dispatch, element, "choices", newChoices);
-              }}
+              id={choice}
+              name={element.name}
+              type="checkbox"
+              disabled={editable}
             />
+            {!editable && <label htmlFor={choice}>{choice}</label>}
             {editable && (
-              <button
-                onClick={() => {
-                  const newChoices = element.data.choices.filter(
-                    (choice: string, index: number) => index !== key
-                  );
-                  handleUpdate(dispatch, element, "choices", newChoices);
-                }}
-              >
-                <MdClose />
-              </button>
+              <>
+                <input
+                  type="text"
+                  disabled={!editable}
+                  placeholder="Option"
+                  value={choice}
+                  className="border p-1 rounded-md"
+                  onChange={(e) => {
+                    const newChoices = element.data.choices.map(
+                      (choice: string, index: number) => {
+                        if (index === key) {
+                          return e.target.value;
+                        }
+                        return choice;
+                      }
+                    );
+                    handleUpdate(dispatch, element, "choices", newChoices);
+                  }}
+                />
+
+                <button
+                  onClick={() => {
+                    const newChoices = element.data.choices.filter(
+                      (choice: string, index: number) => index !== key
+                    );
+                    handleUpdate(dispatch, element, "choices", newChoices);
+                  }}
+                >
+                  <MdClose />
+                </button>
+              </>
             )}
           </div>
         );

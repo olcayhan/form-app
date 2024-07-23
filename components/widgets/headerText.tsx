@@ -3,11 +3,17 @@ import { useAppDispatch } from "@/lib/hooks";
 import handleUpdate from "@/utils/updateHandler";
 import React from "react";
 
-const HeaderText = ({ element }: { element: WidgetType }) => {
+const HeaderText = ({
+  element,
+  editable,
+}: {
+  element: WidgetType;
+  editable: boolean;
+}) => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="flex flex-col justify-start items-start p-4 gap-3">
+    <div className="flex flex-col justify-start items-start p-4 gap-3 border-b-2">
       <input
         type="text"
         placeholder="Header"
@@ -16,6 +22,7 @@ const HeaderText = ({ element }: { element: WidgetType }) => {
         onChange={(e) => {
           handleUpdate(dispatch, element, "header", e.target.value);
         }}
+        disabled={!editable}
       />
       <input
         type="text"
@@ -25,6 +32,7 @@ const HeaderText = ({ element }: { element: WidgetType }) => {
         onChange={(e) => {
           handleUpdate(dispatch, element, "subheader", e.target.value);
         }}
+        disabled={!editable}
       />
     </div>
   );

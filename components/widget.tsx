@@ -15,9 +15,9 @@ const Widget = ({
   const dispatch = useAppDispatch();
   if (!editable) {
     return (
-      <button className="relative w-full border-[1px] rounded-md">
+      <div className="relative w-full rounded-md">
         <element.type element={element} />
-      </button>
+      </div>
     );
   }
   return (
