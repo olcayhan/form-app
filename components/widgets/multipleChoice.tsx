@@ -4,7 +4,13 @@ import { useAppDispatch } from "@/lib/hooks";
 import { MdClose } from "react-icons/md";
 import handleUpdate from "@/utils/updateHandler";
 
-const MultipleChoice = ({ element }: { element: WidgetType }) => {
+const MultipleChoice = ({
+  element,
+  editable,
+}: {
+  element: WidgetType;
+  editable: boolean;
+}) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -17,14 +23,16 @@ const MultipleChoice = ({ element }: { element: WidgetType }) => {
         onChange={(e) => {
           handleUpdate(dispatch, element, "header", e.target.value);
         }}
+        disabled={!editable}
       />
 
       {element.data.choices.map((choice: string, key: number) => {
         return (
           <div key={key} className="flex items-center gap-2">
-            <input type="checkbox" disabled />
+            <input type="checkbox" disabled={editable} />
             <input
               type="text"
+              disabled={!editable}
               placeholder="Option"
               value={choice}
               className="border p-1 rounded-md"
@@ -40,30 +48,34 @@ const MultipleChoice = ({ element }: { element: WidgetType }) => {
                 handleUpdate(dispatch, element, "choices", newChoices);
               }}
             />
-            <button
-              onClick={() => {
-                const newChoices = element.data.choices.filter(
-                  (choice: string, index: number) => index !== key
-                );
-                handleUpdate(dispatch, element, "choices", newChoices);
-              }}
-            >
-              <MdClose />
-            </button>
+            {editable && (
+              <button
+                onClick={() => {
+                  const newChoices = element.data.choices.filter(
+                    (choice: string, index: number) => index !== key
+                  );
+                  handleUpdate(dispatch, element, "choices", newChoices);
+                }}
+              >
+                <MdClose />
+              </button>
+            )}
           </div>
         );
       })}
-      <button
-        className="underline text-[12px]"
-        onClick={() => {
-          handleUpdate(dispatch, element, "choices", [
-            ...element.data.choices,
-            "",
-          ]);
-        }}
-      >
-        add option
-      </button>
+      {editable && (
+        <button
+          className="underline text-[12px]"
+          onClick={() => {
+            handleUpdate(dispatch, element, "choices", [
+              ...element.data.choices,
+              "",
+            ]);
+          }}
+        >
+          add option
+        </button>
+      )}
     </div>
   );
 };

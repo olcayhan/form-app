@@ -1,12 +1,11 @@
 "use client";
+
 import { useAppSelector } from "@/lib/hooks";
 import { WidgetType } from "@/data/types/widgetType";
 import WidgetButton from "@/components/custom/WidgetButton";
 import Widget from "@/components/Widget";
 import { widgetButtons } from "@/data/widgets";
 import Link from "next/link";
-import { BiLeftArrow } from "react-icons/bi";
-import { AiFillLeftCircle } from "react-icons/ai";
 import { BsArrowLeft } from "react-icons/bs";
 
 export default function page() {
@@ -38,7 +37,7 @@ export default function page() {
             </div>
           ) : (
             widgets.map((element) => {
-              return <Widget element={element} key={element.id} />;
+              return <Widget element={element} key={element.id} editable />;
             })
           )}
         </div>

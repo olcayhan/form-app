@@ -5,8 +5,21 @@ import { useAppDispatch } from "@/lib/hooks";
 import { deleteWidget, downWidget, upWidget } from "@/lib/features/widgetSlice";
 import { WidgetType } from "@/data/types/widgetType";
 
-const Widget = ({ element }: { element: WidgetType }) => {
+const Widget = ({
+  element,
+  editable,
+}: {
+  element: WidgetType;
+  editable: boolean;
+}) => {
   const dispatch = useAppDispatch();
+  if (!editable) {
+    return (
+      <button className="relative w-full border-[1px] rounded-md">
+        <element.type element={element} />
+      </button>
+    );
+  }
   return (
     <button className="relative w-full focus-within:border-blue-500 group border-[1px] rounded-md">
       <div className="absolute h-full my-auto -right-12 hidden flex-col justify-center items-center gap-1 group-focus-within:flex text-[32px]">
@@ -23,7 +36,7 @@ const Widget = ({ element }: { element: WidgetType }) => {
           <MdDelete fontSize={20} />
         </div>
       </div>
-      <element.type element={element} />
+      <element.type element={element} editable />
     </button>
   );
 };
