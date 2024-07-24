@@ -1,9 +1,9 @@
 "use client";
-import Widget from "@/components/Widget";
 import Link from "next/link";
 import { BsArrowLeft } from "react-icons/bs";
 import { useParams } from "next/navigation";
 import { forms } from "@/data/forms";
+import Widget from "@/components/Widget";
 
 export default function page() {
   const { id } = useParams();

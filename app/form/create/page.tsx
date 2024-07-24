@@ -3,11 +3,11 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { WidgetType } from "@/data/types/widgetType";
 import WidgetButton from "@/components/custom/WidgetButton";
-import Widget from "@/components/Widget";
 import { widgetButtons } from "@/data/widgets";
 import Link from "next/link";
 import { BsArrowLeft } from "react-icons/bs";
 import { updateTitle } from "@/lib/features/widgetSlice";
+import Widget from "@/components/Widget";
 
 export default function page() {
   const form = useAppSelector((state) => state.widgetReducer.value);
