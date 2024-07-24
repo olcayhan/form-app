@@ -39,7 +39,7 @@ export default function page() {
             return <WidgetButton element={element} />;
           })}
         </div>
-        <div className="w-2/4 flex flex-col justify-start items-start gap-2 p-6 border-[1px]">
+        <div className="w-2/4 flex flex-col justify-start items-start gap-2 p-6 border-[1px] bg-neutral-50">
           {form.widgets.length === 0 ? (
             <div className="w-full flex flex-row justify-center items-center border-neutral-300 border-[1px] min-h-36 rounded-md font-semibold text-lg text-neutral-700">
               Add elements from the left side

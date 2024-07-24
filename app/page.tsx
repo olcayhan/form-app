@@ -29,7 +29,6 @@ export default function Home() {
                 className="w-52 flex flex-col justify-start items-start p-6 border hover:bg-neutral-200 transition-all duration-100 rounded-md active:bg-neutral-300"
               >
                 <h2 className="font-bold">{form.title}</h2>
-                <p>{form.description}</p>
               </Link>
             ))
           )}
