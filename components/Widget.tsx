@@ -4,6 +4,7 @@ import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { useAppDispatch } from "@/lib/hooks";
 import { deleteWidget, downWidget, upWidget } from "@/lib/features/widgetSlice";
 import { WidgetType } from "@/data/types/widgetType";
+import getWidgetType from "@/utils/getWidgetType";
 
 const Widget = ({
   element,
@@ -13,10 +14,14 @@ const Widget = ({
   editable: boolean;
 }) => {
   const dispatch = useAppDispatch();
+
+  const Element = getWidgetType(element.name);
+  if (!Element) return null;
+
   if (!editable) {
     return (
       <div className="relative w-full rounded-md">
-        <element.type element={element} />
+        <Element element={element} editable={false} />
       </div>
     );
   }
@@ -36,7 +41,7 @@ const Widget = ({
           <MdDelete fontSize={20} />
         </div>
       </div>
-      <element.type element={element} editable />
+      <Element element={element} editable />
     </button>
   );
 };

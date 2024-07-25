@@ -17,7 +17,7 @@ export default function Home() {
             Create
           </Link>
         </div>
-        <div className="w-full flex flex-row justify-start items-center border-neutral-300 border-[1px] min-h-36 rounded-md font-semibold text-lg text-neutral-700 gap-3 p-4">
+        <div className="w-full flex flex-row flex-wrap justify-start items-center border-neutral-300 border-[1px] min-h-36 rounded-md font-semibold text-lg text-neutral-700 gap-3 p-4">
           {forms.length === 0 ? (
             <div className="w-full flex flex-row justify-center items-center border-neutral-300 border-[1px] min-h-36 rounded-md font-semibold text-lg text-neutral-700">
               No forms available

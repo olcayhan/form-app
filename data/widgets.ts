@@ -1,17 +1,9 @@
-import ShortText from "@/components/widgets/shortText";
 import { WidgetType } from "./types/widgetType";
-import LongText from "@/components/widgets/longText";
-import SingleChoice from "@/components/widgets/singleChoice";
-import MultipleChoice from "@/components/widgets/multipleChoice";
-import ImageBox from "@/components/widgets/imageBox";
-import HeaderText from "@/components/widgets/headerText";
-import FullNameText from "@/components/widgets/fullnameText";
 
 export const widgetButtons: WidgetType[] = [
   {
     id: 1,
-    name: "Short Text",
-    type: ShortText,
+    name: "ShortText",
     data: {
       header: "",
       subheader: "",
@@ -19,8 +11,7 @@ export const widgetButtons: WidgetType[] = [
   },
   {
     id: 2,
-    name: "Long Text",
-    type: LongText,
+    name: "LongText",
     data: {
       header: "",
       subheader: "",
@@ -28,8 +19,7 @@ export const widgetButtons: WidgetType[] = [
   },
   {
     id: 3,
-    name: "Single Choice",
-    type: SingleChoice,
+    name: "SingleChoice",
     data: {
       header: "",
       choices: ["Choice 1", "Choice 2", "Choice 3"],
@@ -37,8 +27,7 @@ export const widgetButtons: WidgetType[] = [
   },
   {
     id: 4,
-    name: "Multiple Choice",
-    type: MultipleChoice,
+    name: "MultipleChoice",
     data: {
       header: "",
       choices: ["Choice 1", "Choice 2", "Choice 3"],
@@ -47,13 +36,11 @@ export const widgetButtons: WidgetType[] = [
   {
     id: 5,
     name: "Image",
-    type: ImageBox,
-    data: null,
+    data: {},
   },
   {
     id: 6,
     name: "Header",
-    type: HeaderText,
     data: {
       header: "",
       subheader: "",
@@ -61,11 +48,10 @@ export const widgetButtons: WidgetType[] = [
   },
   {
     id: 7,
-    name: "Full Name",
-    type: FullNameText,
+    name: "FullName",
     data: {
       header: "Full Name",
-      subheader1: "First Name",
+      subheader: "First Name",
       subheader2: "Last Name",
     },
   },

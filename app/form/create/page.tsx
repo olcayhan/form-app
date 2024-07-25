@@ -45,7 +45,7 @@ export default function page() {
               Add elements from the left side
             </div>
           ) : (
-            form.widgets.map((element) => {
+            form.widgets.map((element: any) => {
               return <Widget element={element} key={element.id} editable />;
             })
           )}
